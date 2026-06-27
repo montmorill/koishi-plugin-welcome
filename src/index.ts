@@ -30,6 +30,6 @@ export function apply(ctx: Context) {
   })
 
   ctx.on('guild-member-removed', async (session) => {
-    await session.send(session.text('removed', session))
+    await session.send(session.text('removed', makeParam(session)))
   })
 }
