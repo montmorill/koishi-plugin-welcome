@@ -9,14 +9,20 @@ declare module 'koishi' {
   }
 }
 
-export interface Config {}
+export interface Config {
+  added: string
+  removed: string
+}
 
-export const Config: Schema<Config> = Schema.object({})
+export const Config: Schema<Config> = Schema.object({
+  added: Schema.string().default('{at}，欢迎加入群聊！').description('加入群聊的模板'),
+  removed: Schema.string().default('{username}退出了群聊。').description('退出群聊的模板'),
+})
 
-export function apply(ctx: Context) {
-  ctx.i18n.define('zh-CN', {
-    added: '{at}，欢迎加入群聊！',
-    removed: '{username}退出了群聊。',
+export function apply(ctx: Context, config: Config) {
+  ctx.i18n.define('', {
+    added: config.added,
+    removed: config.removed,
   })
 
   function makeParams(session: Session): object {
