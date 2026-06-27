@@ -25,8 +25,7 @@ export function apply(ctx: Context) {
   }
 
   ctx.on('guild-member-added', async (session) => {
-    const text = session?.text('added', makeParam(session))
-    await session.send(text)
+    await session.send(session.text('added', makeParam(session)))
   })
 
   ctx.on('guild-member-removed', async (session) => {
