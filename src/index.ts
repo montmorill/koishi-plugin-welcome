@@ -6,6 +6,16 @@ export const name = 'welcomego'
 export const inject = {
   optional: ['qq-user-info'],
 }
+export const usage = `
+可用模板参数：
+- {userId}: 用户 ID
+- {username}: 用户名
+- {avatar}: 头像 URL
+- {img}: 头像图片
+- {at}: <at> 元素
+- {channelId}: 频道 ID
+- {guildId}: 群组 ID
+`
 
 export interface Config {
   added: string
@@ -29,11 +39,11 @@ export function apply(ctx: Context, config: Config) {
     const avatar = session.event.user?.avatar
     const params = {
       user: session.user,
-      userId: session.userId,
       username: session.username,
+      userId: session.userId,
+      at: h.at(session.userId),
       avatar,
       img: avatar ? h.img(avatar) : undefined,
-      at: h.at(session.userId),
       channel: session.channel,
       channelId: session.channelId,
       guild: session.guild,

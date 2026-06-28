@@ -1,9 +1,13 @@
 {
   "name": "koishi-plugin-welcomego",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "群聊欢迎告别插件，支持自定义模板",
   "typings": "lib/index.d.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/montmorill/koishi-plugin-welcomego.git"
+  },
   "keywords": [
     "chatbot",
     "koishi",
