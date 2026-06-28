@@ -1,12 +1,10 @@
 import type { Context, Session } from 'koishi'
 import { h, Schema } from 'koishi'
+import {} from 'koishi-plugin-qq-user-info'
 
 export const name = 'welcomego'
-
-declare module 'koishi' {
-  interface User {
-    avatar?: string
-  }
+export const inject = {
+  optional: ['qq-user-info'],
 }
 
 export interface Config {
@@ -27,6 +25,7 @@ export function apply(ctx: Context, config: Config) {
 
   async function resolveParams(session: Session): Promise<object> {
     await session.observeUser(['name'])
+    await ctx['qq-user-info']?.processSession?.(session)
     const avatar = session.event.user?.avatar
     const params = {
       user: session.user,
